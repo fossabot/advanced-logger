@@ -6,6 +6,7 @@
   "unpkg": "dist/browser/universal-logger.browser.min.js",
   "typings": "dist/index.d.ts",
   "scripts": {
+    "get-version": "cross-var echo $npm_package_version",
     "build": "npm run build-prod && npm run build-dev",
     "build-prod": "npm run build-prod-browser && npm run build-prod-node",
     "build-prod-browser": "webpack --config webpack.config.js --env.prod=1 --env.target=browser",
@@ -57,8 +58,10 @@
     "@types/lodash": "^4.14.116",
     "@types/node": "^10.11.4",
     "awesome-typescript-loader": "^5.2.0",
+    "cross-var": "^1.1.0",
     "delete-empty": "^2.0.0",
     "jest": "^23.5.0",
+    "replace": "^1.0.0",
     "sinon": "^6.1.5",
     "source-map-loader": "^0.2.4",
     "standard-version": "^4.2.0",
@@ -95,6 +98,11 @@
     ],
     "moduleNameMapper": {
       "fetchFacade$": "node-fetch"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "replace 'https://github.com/myproject/issues/' 'https://myjira/browse/' CHANGELOG.md"
     }
   }
 }
